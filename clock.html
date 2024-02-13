@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <h1>WORLD CLOCK</h1>
+    </div>
+    <div id="container">
+        <div id="clock-container">
+            <div id="clock-frame">
+                <div class="hour-hand" id="hour">
+                    <div id="time-hand">
+
+                    </div>
+                </div>
+                <div class="minute-hand-default" id="minute-default">
+                    <div  id="time-hand">
+
+                    </div>
+                </div>
+             
+                <div class="seconds-hand" id="seconds">
+                    <div  id="time-hand">
+
+                    </div>
+                </div>
+             
+                <!-- <div class="time-hand" id="minute-hand"></div>
+                <div class="time-hand" id="seconds-hand"></div> -->
+                <div id="center-of-gravity"></div>
+            </div>
+        </div>
+        <div id="side-pane">
+            <button onclick="moveSeconds()">
+                Click
+            </button>
+        </div>
+    </div>
+
+    <script src="clock.js"></script>
+</body>
+</html>
