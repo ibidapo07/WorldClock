@@ -21,16 +21,12 @@ function moveSeconds() {
   hour_hand.style.transform = `rotateZ(${hour * 30 - 180}deg)`;
 }
 
-function loadPageAccurately() {
-  moveSeconds();
-}
-
 function startclock() {
   let intvl;
 
   if (!intvl) {
-    intvl = setInterval(moveSeconds, 1000);
+    intvl = setInterval(moveSeconds, 1);
   }
 }
 
-document.onload(loadPageAccurately());
+document.onload(startclock());
