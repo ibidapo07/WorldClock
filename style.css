@@ -28,6 +28,14 @@ h1{
     padding-bottom: 40px;
 }
 
+#hour-hand-1{
+    position: absolute;
+    width: 20px;
+    height: 280px;
+    transform: rotateZ(45deg);
+    padding-bottom: 40px;
+}
+
 #minute-hand-default{
     position: absolute;
     width: 20px;
