@@ -7,22 +7,24 @@
 
 var countryCount = 1;
 var countryArray = [];
-function addNewHourHand(){
-
-  if(countryCount < 3){
+function addNewHourHand() {
+  let Country = document.getElementById("time-zones");
+  let selected = Country.options[Country.selectedIndex];
+  if (countryCount < 3) {
     let clock = document.getElementById("center-of-gravity");
-  let newHand = clock.insertAdjacentElement("beforebegin",document.createElement("div"))
-  newHand.id = `hour-hand-${countryCount}`
-  let innerDiv = newHand.appendChild(document.createElement('div'))
-  innerDiv.className = `time-hand`
+    let newHand = clock.insertAdjacentElement(
+      "beforebegin",
+      document.createElement("div")
+    );
+    newHand.id = `hour-hand-${selected.value}`;
+    let innerDiv = newHand.appendChild(document.createElement("div"));
+    innerDiv.className = `time-hand`;
 
-  countryCount += 1
-  countryArray.push("country1")
-  }else{
-    alert ("You can't have more than 3 different timezones at a time")
+    countryCount += 1;
+    countryArray.push(`${selected.text}`);
+  } else {
+    alert("You can't have more than 3 different timezones at a time");
   }
-
- console.log(countryCount)
 }
 
 function moveSeconds() {
