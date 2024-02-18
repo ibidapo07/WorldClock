@@ -6,7 +6,7 @@
 // const seconds_hand = document.getElementsById("seconds");
 
 var countryCount = 1;
-var countryArray = [];
+var countries = [];
 function addNewHourHand() {
   let Country = document.getElementById("time-zones");
   let selected = Country.options[Country.selectedIndex];
@@ -43,7 +43,31 @@ function moveSeconds() {
   hour_hand.style.transform = `rotateZ(${hour * 30 - 180}deg)`;
 }
 
+const getCountries = async () => {
+  const response = await fetch(
+    "https://countryapi.io/api/all?apikey=ygMN9HYIZDMKnU4wTPDD3iiAvULddJ8LdbrfNhgg"
+  );
+  const json = await response.json();
+
+  for (const country in json) {
+    countries.push(json[country].name);
+  }
+};
+
+function countryDropDown() {
+  countries.forEach((country) => {
+    let Country = document.getElementById("time-zones");
+    let options = Country.appendChild(document.createElement("option"));
+    options.value = country;
+    options.text = country;
+  });
+}
+
 function startclock() {
+  getCountries().then(() => {
+    console.log(countries);
+  });
+
   let intvl;
 
   if (!intvl) {
