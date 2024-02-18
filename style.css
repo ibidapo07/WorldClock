@@ -55,7 +55,7 @@ h1{
 #header{
     display: flex;
     width: 100vw;
-    background-color: rgb(80, 96, 96);
+    background-color: aliceblue;
     justify-content: center;
 }
 #center-of-gravity{
@@ -73,7 +73,7 @@ h1{
     flex-direction: row;
     width: 100vw;
     height: 95vh;
-    background-color: rgb(194, 240, 225);
+    background-color: aliceblue
 }
 #clock-container{
     display: flex;
@@ -84,6 +84,7 @@ h1{
     background-color: aliceblue;
 }
 #clock-frame{
+    left: 100px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -94,9 +95,10 @@ h1{
     border-width: 30px 30px 30px;
     border-radius: 500px;   
     background-color: transparent;
+    position: relative;
 }
 #side-pane{
     height: 95vh;
-    width: 40vh;
-    background-color: bisque;
+    width: 30vh;
+    background-color: transparent;
 }
