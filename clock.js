@@ -22,15 +22,19 @@ function addNewHourHand() {
     let innerDiv = newHand.appendChild(document.createElement("div"));
     innerDiv.className = `time-hand`;
 
-    let  newHandStyle = document.getElementById(`hour-hand-${selected.value}`)
+    let newHandStyle = document.getElementById(`hour-hand-${selected.value}`);
 
-      let timeoffset = getcountryTime(`${selected.value}`)
-      const today = new Date()
-    newHandStyle.style["position"] = "absolute"
-    newHandStyle.style["width"] = "20px"
-    newHandStyle.style["height"] = "280px"
-    newHandStyle.style["transform"] = `rotateZ(${timeoffset[0] == '+' ? (today.getUTCHours() + timeoffset[1])* 30 - 180 : (today.getUTCHours() - timeoffset[1]) * 30 - 180}deg)`
-    newHandStyle.style["padding-bottom"] = "40px"
+    let timeoffset = getcountryTime(`${selected.value}`);
+    const today = new Date();
+    newHandStyle.style["position"] = "absolute";
+    newHandStyle.style["width"] = "20px";
+    newHandStyle.style["height"] = "280px";
+    newHandStyle.style["transform"] = `rotateZ(${
+      timeoffset[0] == "+"
+        ? (today.getUTCHours() + timeoffset[1]) * 30 - 180
+        : (today.getUTCHours() - timeoffset[1]) * 30 - 180
+    }deg)`;
+    newHandStyle.style["padding-bottom"] = "40px";
     // countryCount += 1;
     // countryArray.push(`${selected.text}`);
   } else {
@@ -40,18 +44,18 @@ function addNewHourHand() {
 
 function parseUTCOffset(input) {
   const parts = /(\+|\-)(\d{2})\:(\d{2})$/.exec(input);
-  const sign = parts[1]
+  const sign = parts[1];
   if (!parts) {
     return null;
   }
   return [sign, ...parts.slice(2).map((p) => parseInt(p, 10))];
 }
 
-function getcountryTime(country){
-  let result = countries.find((ele) => ele.name == country)
-  let timeoffset = result.timeZone
-  let time = parseUTCOffset(`${timeoffset}`)
-  return time
+function getcountryTime(country) {
+  let result = countries.find((ele) => ele.name == country);
+  let timeoffset = result.timeZone;
+  let time = parseUTCOffset(`${timeoffset}`);
+  return time;
 }
 
 function moveSeconds() {
@@ -77,14 +81,14 @@ const getCountries = async () => {
   const json = await response.json();
 
   for (const country in json) {
-    let countryObject = {}
-    countryObject["name"] = json[country].name
-    countryObject["timeZone"] = json[country].timezones
-    countryObject["flag"] = json[country].flag
+    let countryObject = {};
+    countryObject["name"] = json[country].name;
+    countryObject["timeZone"] = json[country].timezones;
+    countryObject["flag"] = json[country].flag;
     countries.push(countryObject);
   }
 
-  console.log(countries)
+  console.log(countries);
 };
 
 function countryDropDown() {
@@ -92,7 +96,11 @@ function countryDropDown() {
     let Country = document.getElementById("time-zones");
     let options = Country.appendChild(document.createElement("option"));
     options.value = country["name"];
-    options.text = `${country["name"]} TimeZone : ${country["timeZone"].length > 1? "Multilpe Timezones" : country["timeZone"] }`
+    options.text = `${country["name"]} TimeZone : ${
+      country["timeZone"].length > 1
+        ? "Multilpe Timezones"
+        : country["timeZone"]
+    }`;
   });
 }
 
