@@ -87,7 +87,7 @@ function moveSeconds() {
 
 const getCountries = async () => {
   const response = await fetch(
-    "https://countryapi.io/api/all?apikey=ygMN9HYIZDMKnU4wTPDD3iiAvULddJ8LdbrfNhgg"
+    "https://countryapi.io/api/all?apikey=xQXBxNzCaW2d3cgorjUza2Yu7Ch3qxphSSs3UafH"
   );
   const json = await response.json();
 
