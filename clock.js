@@ -21,9 +21,12 @@ function addNewHourHand() {
 
     let innerDiv = newHand.appendChild(document.createElement("div"));
     innerDiv.className = `time-hand`;
+    innerDiv.id = `time-hand-${selected.value}`;
 
     let newHandStyle = document.getElementById(`hour-hand-${selected.value}`);
+    let flagOption = document.getElementById(`time-hand-${selected.value}`);
 
+    flagOption.style.backgroundImage = `url(${getcountryFlag(selected.value)})`;
     let timeoffset = getcountryTime(`${selected.value}`);
     const today = new Date();
     newHandStyle.style["position"] = "absolute";
@@ -35,6 +38,7 @@ function addNewHourHand() {
         : (today.getUTCHours() - timeoffset[1]) * 30 - 180
     }deg)`;
     newHandStyle.style["padding-bottom"] = "40px";
+
     // countryCount += 1;
     // countryArray.push(`${selected.text}`);
   } else {
@@ -56,6 +60,13 @@ function getcountryTime(country) {
   let timeoffset = result.timeZone;
   let time = parseUTCOffset(`${timeoffset}`);
   return time;
+}
+
+function getcountryFlag(country) {
+  let result = countries.find((ele) => ele.name == country);
+  let flag = result.flag.small;
+
+  return flag;
 }
 
 function moveSeconds() {

@@ -26,13 +26,16 @@ h1{
 }
 
 /* DIVs with ids */
-
+#hour-hand-default {
+    background-image: url("https://flagcdn.com/256x192/cu.png");
+}
 #hour-hand{
     position: absolute;
     width: 20px;
     height: 280px;
     transform: rotateZ(45deg);
     padding-bottom: 40px;
+    
 }
 
 #minute-hand-default{
