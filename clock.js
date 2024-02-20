@@ -65,9 +65,8 @@ function countryDropDown() {
 
 function startclock() {
   getCountries().then(() => {
-    console.log(countries);
+    countryDropDown();
   });
-
   let intvl;
 
   if (!intvl) {
