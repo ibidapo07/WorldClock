@@ -1,12 +1,6 @@
-// // const hour = today.getUTCHours();
-// // const minutes = today.getMinutes();
-
-// const hour_hand = document.getElementById("hour");
-// const minute_hand = document.getElementsById("minute-default");
-// const seconds_hand = document.getElementsById("seconds");
-
 var countryCount = 1;
 var countries = [];
+
 function addNewHourHand() {
   let Country = document.getElementById("time-zones");
   let selected = Country.options[Country.selectedIndex];
@@ -28,6 +22,7 @@ function addNewHourHand() {
 
     flagOption.style.backgroundImage = `url(${getcountryFlag(selected.value)})`;
     let timeoffset = getcountryTime(`${selected.value}`);
+
     const today = new Date();
     newHandStyle.style["position"] = "absolute";
     newHandStyle.style["width"] = "20px";
@@ -38,7 +33,15 @@ function addNewHourHand() {
         : (today.getUTCHours() - timeoffset[1]) * 30 - 180
     }deg)`;
     newHandStyle.style["padding-bottom"] = "40px";
+    setInterval(() => {
+      const today = new Date();
 
+      newHandStyle.style["transform"] = `rotateZ(${
+        timeoffset[0] == "+"
+          ? (today.getUTCSeconds() + timeoffset[1]) * 30 - 180
+          : (today.getUTCSeconds() - timeoffset[1]) * 30 - 180
+      }deg)`;
+    }, 10000);
     // countryCount += 1;
     // countryArray.push(`${selected.text}`);
   } else {
@@ -59,6 +62,7 @@ function getcountryTime(country) {
   let result = countries.find((ele) => ele.name == country);
   let timeoffset = result.timeZone;
   let time = parseUTCOffset(`${timeoffset}`);
+
   return time;
 }
 
@@ -87,7 +91,7 @@ function moveSeconds() {
 
 const getCountries = async () => {
   const response = await fetch(
-    "https://countryapi.io/api/all?apikey=ygMN9HYIZDMKnU4wTPDD3iiAvULddJ8LdbrfNhgg"
+    "https://countryapi.io/api/all?apikey=xQXBxNzCaW2d3cgorjUza2Yu7Ch3qxphSSs3UafH"
   );
   const json = await response.json();
 
@@ -98,14 +102,14 @@ const getCountries = async () => {
     countryObject["flag"] = json[country].flag;
     countries.push(countryObject);
   }
-
-  console.log(countries);
+  console.log(json);
 };
 
 function countryDropDown() {
   countries.forEach((country) => {
     let Country = document.getElementById("time-zones");
     let options = Country.appendChild(document.createElement("option"));
+
     options.value = country["name"];
     options.text = `${country["name"]} TimeZone : ${
       country["timeZone"].length > 1
