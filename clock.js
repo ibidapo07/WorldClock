@@ -38,16 +38,18 @@ function addNewHourHand() {
 
       newHandStyle.style["transform"] = `rotateZ(${
         timeoffset[0] == "+"
-          ? (today.getUTCSeconds() + timeoffset[1]) * 30 - 180
-          : (today.getUTCSeconds() - timeoffset[1]) * 30 - 180
+          ? (today.getUTCHours() + timeoffset[1]) * 30 - 180
+          : (today.getUTCHours() - timeoffset[1]) * 30 - 180
       }deg)`;
-    }, 10000);
-    // countryCount += 1;
+    }, 1000);
+    countryCount += 1;
     // countryArray.push(`${selected.text}`);
   } else {
     alert("You can't have more than 3 different timezones at a time");
   }
 }
+
+// function addNewMinuteHand() {}
 
 function parseUTCOffset(input) {
   const parts = /(\+|\-)(\d{2})\:(\d{2})$/.exec(input);
@@ -68,7 +70,7 @@ function getcountryTime(country) {
 
 function getcountryFlag(country) {
   let result = countries.find((ele) => ele.name == country);
-  let flag = result.flag.small;
+  let flag = result.flag.large;
 
   return flag;
 }
@@ -76,9 +78,9 @@ function getcountryFlag(country) {
 function moveSeconds() {
   const today = new Date();
 
-  const seconds = today.getUTCSeconds();
-  const minute = today.getUTCMinutes();
-  const hour = today.getUTCHours();
+  const seconds = today.getSeconds();
+  const minute = today.getMinutes();
+  const hour = today.getHours();
 
   const seconds_hand = document.getElementById("seconds-hand");
   const minute_hand = document.getElementById("minute-hand-default");
